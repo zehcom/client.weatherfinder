@@ -1,5 +1,5 @@
 import React from 'react';
-import {LogResult} from '../interfaces';
+import {LogResult} from './interfaces';
 
 interface WeatherLogProps {
   title?: string;

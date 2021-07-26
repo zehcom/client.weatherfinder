@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import {LogResult, SummaryResult, WeatherSearch} from '../Weather/interfaces';
-import WeatherForm from '../Weather/WeatherForm/WeatherForm';
-import WeatherSearchResult from '../Weather/WeatherSearchResult/WeatherSearchResult';
-import WeatherSummary from '../Weather/WeatherSummary/WeatherSummary';
-import WeatherLog from '../Weather/WeatherLog/WeatherLog';
+import {LogResult, SummaryResult, WeatherSearch} from './interfaces';
+import WeatherForm from './WeatherForm';
+import WeatherSearchResult from './WeatherSearchResult';
+import WeatherSummary from './WeatherSummary';
+import WeatherLog from './WeatherLog';
+import config from '../../config';
 
 const Home: React.FC<any> = () => {
     const [weatherResult, setWeatherResult] = useState<WeatherSearch | null>(null);
@@ -21,8 +22,8 @@ const Home: React.FC<any> = () => {
 
     function loadSummaries() {
         setSummaryProcessing(true);
-
-        Axios.get('http://localhost:3001/weathers/summary')
+        
+        Axios.get(`${config.apiURL}/weathers/summary`)
         .then(result => {
             setSummaries(result.data as Array<SummaryResult>);
         })
@@ -35,7 +36,7 @@ const Home: React.FC<any> = () => {
     function loadLogs() {
         setLogProcessing(true);
 
-        Axios.get('http://localhost:3001/weathers/last-search')
+        Axios.get(`${config.apiURL}/weathers/last-search`)
         .then(result => {
             setLogs(result.data as Array<LogResult>);
         })
@@ -49,7 +50,7 @@ const Home: React.FC<any> = () => {
         setWeatherProcessing(true);
         setWeatherResult(null);
 
-        Axios.get(`http://localhost:3001/weathers/search?city=${city}`)
+        Axios.get(`${config.apiURL}/weathers/search?city=${city}`)
         .then(result => {
             setWeatherResult(result.data as WeatherSearch);
             loadSummaries();

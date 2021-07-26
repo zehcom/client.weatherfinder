@@ -1,5 +1,5 @@
 import React from 'react';
-import {SummaryResult} from '../interfaces';
+import {SummaryResult} from './interfaces';
 
 interface WeatherSummaryProps {
   title?: string;

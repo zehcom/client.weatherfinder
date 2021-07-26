@@ -1,5 +1,5 @@
 import React from 'react';
-import {WeatherSearch} from '../interfaces';
+import {WeatherSearch} from './interfaces';
 
 interface WeatherSearchResultProps {
   search: WeatherSearch | null;
